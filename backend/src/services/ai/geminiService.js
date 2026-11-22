@@ -17,7 +17,7 @@ import {
 } from './prompts.js';
 
 const DEFAULT_TIMEOUT_MS = 15000;
-const DEFAULT_MODEL = 'gemini-2.5-flash';
+const DEFAULT_MODEL = 'gemini-3.8-flash';
 
 /**
  * Returns true if the Gemini API key is configured and not a placeholder.
@@ -115,7 +115,7 @@ function withTimeout(promise, timeoutMs = DEFAULT_TIMEOUT_MS) {
 }
 
 /**
- * Analyzes a civic complaint using Google Gemini 2.5 Flash Vision.
+ * Analyzes a civic complaint using Google Gemini 3.8 Flash Vision.
  *
  * @param {Object} params
  * @param {Buffer|Uint8Array|string} [params.imageBuffer] - Optional image buffer or base64 string

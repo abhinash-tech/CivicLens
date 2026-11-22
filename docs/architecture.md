@@ -17,7 +17,7 @@ flowchart TD
     end
     
     subgraph External Cloud Services
-        AIModule -->|Official SDK @google/genai| Gemini[Google Gemini 2.5 Flash]
+        AIModule -->|Official SDK @google/genai| Gemini[Google Gemini 3.8 Flash]
         AIModule -->|Image Buffer Upload| Cloudinary[Cloudinary CDN]
         Repo -->|Parameterized SQL + SSL| MySQL[(Aiven Cloud MySQL)]
     end

@@ -52,7 +52,7 @@ This guide provides step-by-step instructions for deploying CivicLens to product
    ADMIN_EMAIL=admin@civiclens.gov
    ADMIN_PASSWORD=YourStrongAdminPassword123!
    GEMINI_API_KEY=your_gemini_api_key
-   GEMINI_MODEL=gemini-2.5-flash
+   GEMINI_MODEL=gemini-3.8-flash
    CLOUDINARY_CLOUD_NAME=your_cloud_name
    CLOUDINARY_API_KEY=your_cloudinary_api_key
    CLOUDINARY_API_SECRET=your_cloudinary_api_secret
