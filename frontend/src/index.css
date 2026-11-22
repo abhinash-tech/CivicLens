@@ -2,13 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Primary Brand */
+  --color-primary: #087F72;
+  --color-primary-hover: #06665C;
+  --color-primary-light: #E6F5F1;
+  --color-accent: #10B981;
+  --color-accent-light: #ECFDF5;
+
+  /* Typography */
+  --color-text-primary: #111827;
+  --color-text-secondary: #64748B;
+  --color-text-muted: #94A3B8;
+  --color-text-inverse: #FFFFFF;
+
+  /* Backgrounds */
+  --color-bg-main: #F5F7FA;
+  --color-bg-secondary: #F8FAFC;
+  --color-bg-card: #FFFFFF;
+  --color-bg-subtle-green: #F0FDF9;
+
+  /* Borders */
+  --color-border-default: #E2E8F0;
+  --color-border-strong: #CBD5E1;
+  --color-border-focus: #087F72;
+
+  /* Dark Elements */
+  --color-footer-bg: #0B1220;
+  --color-dark-card: #111827;
+  --color-dark-surface: #1E293B;
+
+  /* Semantic Colors */
+  --color-critical: #DC2626;
+  --color-high: #EA580C;
+  --color-medium: #D97706;
+  --color-low: #16A34A;
+  --color-info: #2563EB;
+  --color-resolved: #15803D;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    @apply bg-slate-50 text-navy-900;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-primary);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
   }
 
   input[type="text"],
@@ -17,15 +59,70 @@
   input[type="password"],
   select,
   textarea {
-    @apply transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600;
+    border-color: var(--color-border-default);
+    background-color: var(--color-bg-card);
+    color: var(--color-text-primary);
+    transition: all 0.15s ease-in-out;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  input[type="password"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(8, 127, 114, 0.15);
   }
 }
 
-/* Custom Civics Utilities */
-.card-subtle {
-  @apply bg-white border border-slate-200/80 rounded-xl shadow-sm hover:shadow transition-shadow duration-200;
-}
+/* Reusable Design System Component Utilities */
+@layer components {
+  .card-subtle {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
-.gradient-civic {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  .card-subtle:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    border-color: #CBD5E1;
+  }
+
+  .btn-primary {
+    background-color: #087F72;
+    color: #FFFFFF;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 1px 2px 0 rgba(8, 127, 114, 0.2);
+  }
+
+  .btn-primary:hover {
+    background-color: #06665C;
+    box-shadow: 0 4px 6px -1px rgba(8, 127, 114, 0.25);
+  }
+
+  .btn-primary:focus-visible {
+    outline: 2px solid #087F72;
+    outline-offset: 2px;
+  }
+
+  .btn-secondary {
+    background-color: #FFFFFF;
+    color: #111827;
+    border: 1px solid #E2E8F0;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  }
+
+  .btn-secondary:hover {
+    background-color: #F8FAFC;
+    border-color: #CBD5E1;
+  }
 }

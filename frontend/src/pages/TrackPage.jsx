@@ -102,32 +102,32 @@ export default function TrackPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-8">
       {/* Page Header */}
       <div className="space-y-2 text-center max-w-xl mx-auto">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold">
-          <Search size={14} className="text-teal-600" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F5F1] border border-[#B2E3D8] text-[#087F72] text-xs font-semibold">
+          <Search size={14} className="text-[#087F72]" />
           <span>Real-Time Citizen Tracking</span>
         </div>
-        <h1 className="text-3xl font-extrabold text-navy-950 tracking-tight">
+        <h1 className="text-3xl font-extrabold text-[#111827] tracking-tight">
           Track Complaint Status
         </h1>
-        <p className="text-sm text-slate-600">
+        <p className="text-sm text-[#64748B]">
           Enter your unique tracking code (`CL-YYYY-XXXX`) to inspect audit timeline, municipal assignments, and resolution progress.
         </p>
 
         {/* Search input bar */}
         <form onSubmit={handleSearchSubmit} className="pt-4 max-w-md mx-auto">
           <div className="relative flex items-center">
-            <Search size={18} className="absolute left-3.5 text-slate-400" />
+            <Search size={18} className="absolute left-3.5 text-[#94A3B8]" />
             <input
               type="text"
               placeholder="e.g. CL-2025-9481"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              className="w-full pl-10 pr-28 py-3 rounded-xl border border-slate-300 text-sm font-mono placeholder:font-sans placeholder-slate-400 shadow-xs focus:border-teal-600 uppercase"
+              className="w-full pl-10 pr-28 py-3 rounded-xl border border-[#E2E8F0] text-sm font-mono placeholder:font-sans placeholder-[#94A3B8] shadow-xs focus:border-[#087F72] uppercase"
             />
             <button
               type="submit"
               disabled={loading || !searchInput.trim()}
-              className="absolute right-1.5 px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white text-xs font-bold transition-colors"
+              className="absolute right-1.5 px-4 py-2 rounded-lg bg-[#087F72] hover:bg-[#06665C] disabled:opacity-50 text-white text-xs font-bold transition-colors"
             >
               {loading ? 'Searching...' : 'Track'}
             </button>
@@ -137,9 +137,9 @@ export default function TrackPage() {
 
       {/* Loading state */}
       {loading && (
-        <div className="card-subtle p-12 text-center space-y-4">
-          <div className="w-10 h-10 border-4 border-teal-200 border-t-teal-600 rounded-full animate-spin mx-auto" />
-          <p className="text-sm text-slate-600 font-medium">
+        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-12 text-center space-y-4 shadow-sm">
+          <div className="w-10 h-10 border-4 border-[#B2E3D8] border-t-[#087F72] rounded-full animate-spin mx-auto" />
+          <p className="text-sm text-[#64748B] font-medium">
             Fetching complaint record and timeline...
           </p>
         </div>
@@ -147,15 +147,15 @@ export default function TrackPage() {
 
       {/* Error state */}
       {!loading && error && (
-        <div className="card-subtle p-8 text-center space-y-4 border-rose-200 bg-rose-50/40">
-          <div className="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto">
+        <div className="bg-[#FEF2F2] rounded-2xl p-8 text-center space-y-4 border border-[#FECACA]">
+          <div className="w-12 h-12 rounded-full bg-[#FEE2E2] text-[#DC2626] flex items-center justify-center mx-auto">
             <AlertCircle size={24} />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-navy-900">Record Not Found</h3>
-            <p className="text-sm text-slate-600 mt-1">{error}</p>
+            <h3 className="text-lg font-bold text-[#991B1B]">Record Not Found</h3>
+            <p className="text-sm text-[#DC2626] mt-1">{error}</p>
           </div>
-          <p className="text-xs text-slate-500 max-w-md mx-auto">
+          <p className="text-xs text-[#64748B] max-w-md mx-auto">
             Please double-check the tracking code provided when you submitted the issue, or search our public transparency portal.
           </p>
         </div>
@@ -165,23 +165,23 @@ export default function TrackPage() {
       {!loading && complaint && (
         <div className="space-y-6 animate-in fade-in duration-300">
           {/* Top Overview Card */}
-          <div className="card-subtle p-6 sm:p-8 space-y-6">
+          <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 sm:p-8 space-y-6 shadow-sm">
             {/* Header row */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E2E8F0]">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-lg sm:text-xl font-bold text-teal-700">
+                  <span className="font-mono text-lg sm:text-xl font-bold text-[#087F72]">
                     {complaint.complaintCode}
                   </span>
                   <button
                     onClick={copyCode}
-                    className="p-1.5 text-slate-400 hover:text-teal-700 hover:bg-teal-50 rounded-md transition-colors"
+                    className="p-1.5 text-[#94A3B8] hover:text-[#087F72] hover:bg-[#E6F5F1] rounded-md transition-colors"
                     title="Copy complaint code"
                   >
-                    {copied ? <Check size={16} className="text-emerald-600" /> : <Copy size={16} />}
+                    {copied ? <Check size={16} className="text-[#15803D]" /> : <Copy size={16} />}
                   </button>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-navy-950">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#111827]">
                   {complaint.title}
                 </h2>
               </div>
@@ -194,14 +194,14 @@ export default function TrackPage() {
 
             {/* Locality & Department info */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-200/60">
-                <span className="text-slate-400 font-semibold uppercase block mb-1">Locality & Landmark</span>
-                <div className="flex items-start gap-1.5 text-slate-800 font-medium text-sm">
-                  <MapPin size={15} className="text-teal-600 mt-0.5 shrink-0" />
+              <div className="bg-[#F8FAFC] p-3 rounded-lg border border-[#E2E8F0]">
+                <span className="text-[#94A3B8] font-semibold uppercase block mb-1">Locality & Landmark</span>
+                <div className="flex items-start gap-1.5 text-[#111827] font-medium text-sm">
+                  <MapPin size={15} className="text-[#087F72] mt-0.5 shrink-0" />
                   <div>
                     <span>{complaint.locality}</span>
                     {complaint.landmark && (
-                      <span className="block text-xs text-slate-500 font-normal mt-0.5">
+                      <span className="block text-xs text-[#64748B] font-normal mt-0.5">
                         Landmark: {complaint.landmark}
                       </span>
                     )}
@@ -209,18 +209,18 @@ export default function TrackPage() {
                 </div>
               </div>
 
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-200/60">
-                <span className="text-slate-400 font-semibold uppercase block mb-1">Assigned Department</span>
-                <div className="flex items-center gap-1.5 text-slate-800 font-medium text-sm">
-                  <Building2 size={15} className="text-teal-600 shrink-0" />
+              <div className="bg-[#F8FAFC] p-3 rounded-lg border border-[#E2E8F0]">
+                <span className="text-[#94A3B8] font-semibold uppercase block mb-1">Assigned Department</span>
+                <div className="flex items-center gap-1.5 text-[#111827] font-medium text-sm">
+                  <Building2 size={15} className="text-[#087F72] shrink-0" />
                   <span>{complaint.department || 'Public Works Department'}</span>
                 </div>
               </div>
 
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-200/60">
-                <span className="text-slate-400 font-semibold uppercase block mb-1">Reported Timestamp</span>
-                <div className="flex items-center gap-1.5 text-slate-800 font-medium text-sm">
-                  <Calendar size={15} className="text-slate-400 shrink-0" />
+              <div className="bg-[#F8FAFC] p-3 rounded-lg border border-[#E2E8F0]">
+                <span className="text-[#94A3B8] font-semibold uppercase block mb-1">Reported Timestamp</span>
+                <div className="flex items-center gap-1.5 text-[#111827] font-medium text-sm">
+                  <Calendar size={15} className="text-[#94A3B8] shrink-0" />
                   <span>
                     {complaint.createdAt
                       ? new Date(complaint.createdAt).toLocaleDateString('en-US', {
@@ -238,10 +238,10 @@ export default function TrackPage() {
 
             {/* Description */}
             <div className="space-y-1.5">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#64748B]">
                 Citizen Incident Description
               </h4>
-              <p className="text-sm text-slate-700 bg-slate-50/60 p-4 rounded-xl border border-slate-200/50 leading-relaxed whitespace-pre-wrap">
+              <p className="text-sm text-[#111827] bg-[#F8FAFC] p-4 rounded-xl border border-[#E2E8F0] leading-relaxed whitespace-pre-wrap">
                 {complaint.description}
               </p>
             </div>
@@ -249,11 +249,11 @@ export default function TrackPage() {
             {/* Photo attachment if available */}
             {complaint.imageUrl && (
               <div className="space-y-2 pt-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#64748B] flex items-center gap-1.5">
                   <Camera size={14} />
                   Site Photo Evidence
                 </h4>
-                <div className="relative inline-block rounded-xl overflow-hidden border border-slate-200 max-h-72 shadow-2xs group">
+                <div className="relative inline-block rounded-xl overflow-hidden border border-[#E2E8F0] max-h-72 shadow-xs group">
                   <img
                     src={complaint.imageUrl}
                     alt={complaint.title}
@@ -274,23 +274,23 @@ export default function TrackPage() {
           </div>
 
           {/* Milestone Progress Timeline */}
-          <div className="card-subtle p-6 sm:p-8 space-y-6">
-            <div className="border-b border-slate-100 pb-3">
-              <h3 className="text-lg font-bold text-navy-950 flex items-center gap-2">
-                <Clock size={20} className="text-teal-600" />
+          <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 sm:p-8 space-y-6 shadow-sm">
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <h3 className="text-lg font-bold text-[#111827] flex items-center gap-2">
+                <Clock size={20} className="text-[#087F72]" />
                 Resolution Progress Timeline
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-[#64748B]">
                 Tamper-proof municipal milestone tracking with timestamped audit entries.
               </p>
             </div>
 
             {/* If Rejected */}
             {complaint.status === 'REJECTED' ? (
-              <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-start gap-3">
-                <AlertCircle size={20} className="text-rose-600 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-[#FEF2F2] border border-[#FECACA] text-[#DC2626] text-sm flex items-start gap-3">
+                <AlertCircle size={20} className="text-[#DC2626] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-rose-900">Complaint Rejected or Closed</h4>
+                  <h4 className="font-bold text-[#991B1B]">Complaint Rejected or Closed</h4>
                   <p className="text-xs mt-1">
                     This issue was reviewed and flagged as outside municipal scope, duplicate, or unverified.
                   </p>
@@ -301,9 +301,9 @@ export default function TrackPage() {
               <div className="relative py-2">
                 <div className="hidden sm:grid grid-cols-5 gap-2 relative">
                   {/* Connecting Line behind steps */}
-                  <div className="absolute top-4 left-[10%] right-[10%] h-0.5 bg-slate-200 -z-0" />
+                  <div className="absolute top-4 left-[10%] right-[10%] h-0.5 bg-[#E2E8F0] -z-0" />
                   <div
-                    className="absolute top-4 left-[10%] h-0.5 bg-teal-600 transition-all duration-500 -z-0"
+                    className="absolute top-4 left-[10%] h-0.5 bg-[#087F72] transition-all duration-500 -z-0"
                     style={{
                       width: `${(Math.max(0, currentStageIdx) / (STANDARD_STAGES.length - 1)) * 80}%`,
                     }}
@@ -318,20 +318,20 @@ export default function TrackPage() {
                         <div
                           className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                             isCompleted
-                              ? 'bg-teal-600 text-white shadow-sm ring-4 ring-teal-50'
-                              : 'bg-white border-2 border-slate-300 text-slate-400'
+                              ? 'bg-[#087F72] text-white shadow-sm ring-4 ring-[#E6F5F1]'
+                              : 'bg-white border-2 border-[#CBD5E1] text-[#94A3B8]'
                           }`}
                         >
                           {isCompleted ? <Check size={14} /> : idx + 1}
                         </div>
                         <span
                           className={`text-xs mt-2 font-semibold ${
-                            isCurrent ? 'text-teal-700' : isCompleted ? 'text-navy-900' : 'text-slate-400'
+                            isCurrent ? 'text-[#087F72]' : isCompleted ? 'text-[#111827]' : 'text-[#94A3B8]'
                           }`}
                         >
                           {stage.label}
                         </span>
-                        <span className="text-[10px] text-slate-400 leading-tight mt-0.5 hidden md:block">
+                        <span className="text-[10px] text-[#94A3B8] leading-tight mt-0.5 hidden md:block">
                           {stage.description}
                         </span>
                       </div>
@@ -350,8 +350,8 @@ export default function TrackPage() {
                         <div
                           className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
                             isCompleted
-                              ? 'bg-teal-600 text-white shadow-2xs'
-                              : 'bg-white border-2 border-slate-300 text-slate-400'
+                              ? 'bg-[#087F72] text-white shadow-xs'
+                              : 'bg-white border-2 border-[#CBD5E1] text-[#94A3B8]'
                           }`}
                         >
                           {isCompleted ? <Check size={12} /> : idx + 1}
@@ -359,12 +359,12 @@ export default function TrackPage() {
                         <div>
                           <div
                             className={`text-sm font-semibold ${
-                              isCurrent ? 'text-teal-700' : isCompleted ? 'text-navy-900' : 'text-slate-400'
+                              isCurrent ? 'text-[#087F72]' : isCompleted ? 'text-[#111827]' : 'text-[#94A3B8]'
                             }`}
                           >
                             {stage.label}
                           </div>
-                          <div className="text-xs text-slate-500">{stage.description}</div>
+                          <div className="text-xs text-[#64748B]">{stage.description}</div>
                         </div>
                       </div>
                     );
@@ -375,21 +375,21 @@ export default function TrackPage() {
 
             {/* Audit History Logs */}
             {complaint.timeline && complaint.timeline.length > 0 && (
-              <div className="pt-4 border-t border-slate-100 space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
+              <div className="pt-4 border-t border-[#E2E8F0] space-y-3">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#64748B]">
                   Municipal Action Log
                 </h4>
                 <div className="space-y-3">
                   {complaint.timeline.map((item, i) => (
                     <div
                       key={i}
-                      className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
+                      className="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
                     >
                       <div className="flex items-center gap-2">
                         <StatusBadge status={item.status} size="sm" />
-                        <span className="text-slate-700 font-medium">{item.reason || 'Status update logged'}</span>
+                        <span className="text-[#111827] font-medium">{item.reason || 'Status update logged'}</span>
                       </div>
-                      <div className="flex items-center gap-3 text-slate-400 shrink-0">
+                      <div className="flex items-center gap-3 text-[#94A3B8] shrink-0">
                         <span className="flex items-center gap-1">
                           <User size={12} />
                           {item.changedBy || 'Officer'}
@@ -415,8 +415,8 @@ export default function TrackPage() {
           {/* AI Assessment Details */}
           {complaint.aiAssessment && (
             <div className="space-y-2">
-              <h3 className="text-base font-bold text-navy-950 flex items-center gap-2">
-                <Sparkles size={18} className="text-teal-600" />
+              <h3 className="text-base font-bold text-[#111827] flex items-center gap-2">
+                <Sparkles size={18} className="text-[#087F72]" />
                 Gemini AI Risk & Recommendation Breakdown
               </h3>
               <AIAssessmentCard assessment={{

@@ -35,18 +35,18 @@ export default function Modal({ isOpen, onClose, title, children, maxWidth = 'ma
 
       {/* Modal Dialog */}
       <div
-        className={`relative w-full ${maxWidth} bg-white rounded-2xl shadow-2xl border border-slate-200 my-8 overflow-hidden z-10 animate-in zoom-in-95 duration-150 flex flex-col max-h-[90vh]`}
+        className={`relative w-full ${maxWidth} bg-white rounded-2xl shadow-2xl border border-[#E2E8F0] my-8 overflow-hidden z-10 animate-in zoom-in-95 duration-150 flex flex-col max-h-[90vh]`}
         role="dialog"
         aria-modal="true"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50/70">
-          <h3 className="text-lg font-semibold text-navy-900 truncate pr-4">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E2E8F0] bg-[#F8FAFC]">
+          <h3 className="text-lg font-semibold text-[#111827] truncate pr-4">
             {title}
           </h3>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 rounded-lg transition-colors"
+            className="p-1.5 text-slate-400 hover:text-[#111827] hover:bg-slate-200/60 rounded-lg transition-colors"
             aria-label="Close dialog"
           >
             <X size={20} />

@@ -17,27 +17,27 @@ export default function AIAssessmentCard({ assessment, className = '' }) {
   } = assessment;
 
   const confidenceColor = {
-    High: 'bg-emerald-100 text-emerald-800 border-emerald-200',
-    Medium: 'bg-amber-100 text-amber-800 border-amber-200',
-    Low: 'bg-slate-100 text-slate-700 border-slate-200',
-  }[confidence] || 'bg-teal-100 text-teal-800 border-teal-200';
+    High: 'bg-[#E6F5F1] text-[#087F72] border-[#B2E3D8]',
+    Medium: 'bg-[#FFFBEB] text-[#D97706] border-[#FDE68A]',
+    Low: 'bg-[#F1F5F9] text-[#64748B] border-[#E2E8F0]',
+  }[confidence] || 'bg-[#E6F5F1] text-[#087F72] border-[#B2E3D8]';
 
   return (
-    <div className={`rounded-xl border border-teal-200/80 bg-gradient-to-br from-teal-50/60 via-white to-slate-50 p-5 shadow-sm ${className}`}>
+    <div className={`rounded-xl border border-[#E2E8F0] bg-white p-5 shadow-sm ${className}`}>
       {/* Header banner */}
-      <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-teal-100">
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-[#E2E8F0]">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-teal-600 text-white flex items-center justify-center shadow-sm">
-            <Sparkles size={18} className="animate-pulse" />
+          <div className="w-8 h-8 rounded-lg bg-[#087F72] text-white flex items-center justify-center shadow-xs">
+            <Sparkles size={18} />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-navy-900 flex items-center gap-2">
+            <h4 className="text-sm font-semibold text-[#111827] flex items-center gap-2">
               Gemini AI Triage Assessment
-              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-teal-600 text-white">
+              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#087F72] text-white">
                 Automated
               </span>
             </h4>
-            <p className="text-xs text-slate-500">Multimodal vision analysis & civic risk prioritization</p>
+            <p className="text-xs text-[#64748B]">Multimodal vision analysis & civic risk prioritization</p>
           </div>
         </div>
 
@@ -50,12 +50,12 @@ export default function AIAssessmentCard({ assessment, className = '' }) {
             </span>
           )}
           {needsHumanReview ? (
-            <span className="text-xs px-2.5 py-0.5 rounded-full font-medium bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1">
+            <span className="text-xs px-2.5 py-0.5 rounded-full font-medium bg-[#FFFBEB] text-[#D97706] border border-[#FDE68A] flex items-center gap-1">
               <UserCheck size={12} />
               Review Pending
             </span>
           ) : (
-            <span className="text-xs px-2.5 py-0.5 rounded-full font-medium bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1">
+            <span className="text-xs px-2.5 py-0.5 rounded-full font-medium bg-[#F0FDF4] text-[#15803D] border border-[#BBF7D0] flex items-center gap-1">
               <CheckCircle2 size={12} />
               Verified
             </span>
@@ -65,17 +65,17 @@ export default function AIAssessmentCard({ assessment, className = '' }) {
 
       {/* Meta tags: Issue Type, Severity, Department */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
-        <div className="bg-white p-3 rounded-lg border border-slate-200/70 shadow-2xs">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-1">
+        <div className="bg-[#F8FAFC] p-3 rounded-lg border border-[#E2E8F0]">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] block mb-1">
             Detected Issue
           </span>
-          <span className="text-sm font-medium text-navy-900 block truncate">
+          <span className="text-sm font-medium text-[#111827] block truncate">
             {issueType || 'General Infrastructure'}
           </span>
         </div>
 
-        <div className="bg-white p-3 rounded-lg border border-slate-200/70 shadow-2xs flex flex-col justify-between">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-1">
+        <div className="bg-[#F8FAFC] p-3 rounded-lg border border-[#E2E8F0] flex flex-col justify-between">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] block mb-1">
             Assessed Severity
           </span>
           <div>
@@ -83,11 +83,11 @@ export default function AIAssessmentCard({ assessment, className = '' }) {
           </div>
         </div>
 
-        <div className="bg-white p-3 rounded-lg border border-slate-200/70 shadow-2xs">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-1">
+        <div className="bg-[#F8FAFC] p-3 rounded-lg border border-[#E2E8F0]">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8] block mb-1">
             Target Department
           </span>
-          <span className="text-sm font-medium text-teal-800 block truncate">
+          <span className="text-sm font-medium text-[#087F72] block truncate">
             {department || 'Public Works'}
           </span>
         </div>
@@ -96,30 +96,30 @@ export default function AIAssessmentCard({ assessment, className = '' }) {
       {/* Details breakdown */}
       <div className="space-y-3 pt-1 text-sm">
         {summary && (
-          <div className="bg-white/80 p-3 rounded-lg border border-slate-200/60">
-            <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+          <div className="bg-[#F8FAFC] p-3 rounded-lg border border-[#E2E8F0]">
+            <h5 className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1">
               Issue Summary
             </h5>
-            <p className="text-slate-700 leading-relaxed text-xs sm:text-sm">{summary}</p>
+            <p className="text-[#111827] leading-relaxed text-xs sm:text-sm">{summary}</p>
           </div>
         )}
 
         {riskReason && (
-          <div className="bg-orange-50/60 border border-orange-200/80 p-3 rounded-lg flex items-start gap-2.5">
-            <ShieldAlert size={16} className="text-orange-600 mt-0.5 shrink-0" />
+          <div className="bg-[#FFF7ED] border border-[#FFEDD5] p-3 rounded-lg flex items-start gap-2.5">
+            <ShieldAlert size={16} className="text-[#EA580C] mt-0.5 shrink-0" />
             <div>
-              <h5 className="text-xs font-semibold text-orange-900 mb-0.5">Risk & Impact Evaluation</h5>
-              <p className="text-xs sm:text-sm text-orange-800 leading-relaxed">{riskReason}</p>
+              <h5 className="text-xs font-semibold text-[#9A3412] mb-0.5">Risk & Impact Evaluation</h5>
+              <p className="text-xs sm:text-sm text-[#C2410C] leading-relaxed">{riskReason}</p>
             </div>
           </div>
         )}
 
         {recommendedAction && (
-          <div className="bg-teal-50/70 border border-teal-200/80 p-3 rounded-lg flex items-start gap-2.5">
-            <ArrowRight size={16} className="text-teal-700 mt-0.5 shrink-0" />
+          <div className="bg-[#F0FDF9] border border-[#A7F3D0] p-3 rounded-lg flex items-start gap-2.5">
+            <ArrowRight size={16} className="text-[#087F72] mt-0.5 shrink-0" />
             <div>
-              <h5 className="text-xs font-semibold text-teal-900 mb-0.5">Recommended Municipal Action</h5>
-              <p className="text-xs sm:text-sm text-teal-800 leading-relaxed">{recommendedAction}</p>
+              <h5 className="text-xs font-semibold text-[#065F54] mb-0.5">Recommended Municipal Action</h5>
+              <p className="text-xs sm:text-sm text-[#087F72] leading-relaxed">{recommendedAction}</p>
             </div>
           </div>
         )}

@@ -33,25 +33,25 @@ export default function Navbar() {
   const navItemClass = ({ isActive }) =>
     `flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
       isActive
-        ? 'text-teal-700 bg-teal-50 font-semibold'
-        : 'text-slate-600 hover:text-navy-900 hover:bg-slate-100'
+        ? 'text-teal-700 bg-teal-100 font-semibold shadow-2xs'
+        : 'text-slate-600 hover:text-navy-900 hover:bg-slate-100/80'
     }`;
 
   const mobileNavItemClass = ({ isActive }) =>
-    `flex items-center gap-3 px-3 py-2.5 rounded-lg text-base font-medium transition-colors ${
+    `flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-base font-medium transition-colors ${
       isActive
-        ? 'text-teal-700 bg-teal-50 font-semibold'
-        : 'text-slate-700 hover:text-navy-900 hover:bg-slate-100'
+        ? 'text-teal-700 bg-teal-100 font-semibold'
+        : 'text-slate-700 hover:text-navy-900 hover:bg-slate-50'
     }`;
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Brand */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-teal-600 flex items-center justify-center text-white shadow-sm group-hover:bg-teal-700 transition-colors">
-              <ShieldCheck size={24} />
+            <div className="w-9 h-9 rounded-xl bg-teal-600 flex items-center justify-center text-white shadow-xs group-hover:bg-teal-700 transition-colors">
+              <ShieldCheck size={22} />
             </div>
             <div>
               <span className="text-xl font-bold tracking-tight text-navy-900 group-hover:text-teal-700 transition-colors">
@@ -69,15 +69,15 @@ export default function Navbar() {
               Home
             </NavLink>
             <NavLink to="/report" className={navItemClass}>
-              <PlusCircle size={16} />
+              <PlusCircle size={15} />
               Report Issue
             </NavLink>
             <NavLink to="/track" className={navItemClass}>
-              <Search size={16} />
+              <Search size={15} />
               Track Status
             </NavLink>
             <NavLink to="/transparency" className={navItemClass}>
-              <BarChart3 size={16} />
+              <BarChart3 size={15} />
               Transparency
             </NavLink>
           </nav>
@@ -88,7 +88,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 <Link
                   to="/admin"
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-navy-900 text-white hover:bg-navy-800 transition-colors shadow-2xs"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-navy-900 text-white hover:bg-slate-800 transition-colors shadow-xs"
                 >
                   <LayoutDashboard size={14} />
                   Admin Dashboard
@@ -105,7 +105,7 @@ export default function Navbar() {
             ) : (
               <Link
                 to="/admin/login"
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium text-slate-700 hover:text-navy-900 hover:bg-slate-50 rounded-lg border border-slate-200 transition-colors shadow-2xs"
               >
                 <Lock size={13} />
                 Admin Portal
@@ -120,7 +120,7 @@ export default function Navbar() {
               className="p-2 rounded-lg text-slate-600 hover:text-navy-900 hover:bg-slate-100 focus:outline-none"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
@@ -128,7 +128,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-150 shadow-lg">
+        <div className="md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-1 animate-in slide-in-from-top-2 duration-150 shadow-md">
           <NavLink
             to="/"
             end
@@ -168,7 +168,7 @@ export default function Navbar() {
                 <Link
                   to="/admin"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-sm font-semibold bg-navy-900 text-white hover:bg-navy-800 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-sm font-semibold bg-navy-900 text-white hover:bg-slate-800 transition-colors"
                 >
                   <LayoutDashboard size={16} />
                   Admin Dashboard
@@ -188,7 +188,7 @@ export default function Navbar() {
               <Link
                 to="/admin/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-sm font-semibold border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-sm font-semibold border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors"
               >
                 <Lock size={15} />
                 Admin Portal

@@ -104,16 +104,16 @@ export default function TransparencyPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200/80 pb-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#E2E8F0] pb-6">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold">
-            <BarChart3 size={14} className="text-teal-600" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F5F1] border border-[#B2E3D8] text-[#087F72] text-xs font-semibold">
+            <BarChart3 size={14} className="text-[#087F72]" />
             <span>Open Civic Governance</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-navy-950 tracking-tight">
+          <h1 className="text-3xl font-extrabold text-[#111827] tracking-tight">
             Public Transparency Portal
           </h1>
-          <p className="text-sm text-slate-600 max-w-2xl">
+          <p className="text-sm text-[#64748B] max-w-2xl">
             Real-time municipal performance metrics, department SLA benchmarks, and an open ledger of community civic reports.
           </p>
         </div>
@@ -121,7 +121,7 @@ export default function TransparencyPage() {
         <button
           onClick={loadData}
           disabled={loading}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-xs font-semibold text-slate-700 shadow-2xs transition-colors self-start md:self-auto"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-[#E2E8F0] hover:bg-[#F8FAFC] text-xs font-semibold text-[#111827] shadow-xs transition-colors self-start md:self-auto"
         >
           <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
           <span>Refresh Metrics</span>
@@ -130,71 +130,71 @@ export default function TransparencyPage() {
 
       {/* Top 4 Key Metric Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div className="card-subtle p-5 bg-white">
+        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-5 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Total Reported</span>
-            <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#94A3B8]">Total Reported</span>
+            <div className="w-8 h-8 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-[#111827] flex items-center justify-center">
               <Building2 size={16} />
             </div>
           </div>
-          <div className="text-3xl font-extrabold text-navy-900 mt-2">
+          <div className="text-3xl font-extrabold text-[#111827] mt-2">
             {total}
           </div>
-          <p className="text-xs text-slate-500 mt-1">Logged across all wards</p>
+          <p className="text-xs text-[#64748B] mt-1">Logged across all wards</p>
         </div>
 
-        <div className="card-subtle p-5 bg-white">
+        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-5 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Resolved</span>
-            <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#94A3B8]">Resolved</span>
+            <div className="w-8 h-8 rounded-lg bg-[#F0FDF4] border border-[#BBF7D0] text-[#15803D] flex items-center justify-center">
               <CheckCircle2 size={16} />
             </div>
           </div>
-          <div className="text-3xl font-extrabold text-emerald-600 mt-2">
+          <div className="text-3xl font-extrabold text-[#15803D] mt-2">
             {resolved}
           </div>
-          <p className="text-xs text-emerald-700 font-medium mt-1">
+          <p className="text-xs text-[#15803D] font-medium mt-1">
             {resolutionRate}% overall resolution rate
           </p>
         </div>
 
-        <div className="card-subtle p-5 bg-white">
+        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-5 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">In Active Progress</span>
-            <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#94A3B8]">In Active Progress</span>
+            <div className="w-8 h-8 rounded-lg bg-[#E6F5F1] border border-[#B2E3D8] text-[#087F72] flex items-center justify-center">
               <Clock size={16} />
             </div>
           </div>
-          <div className="text-3xl font-extrabold text-teal-600 mt-2">
+          <div className="text-3xl font-extrabold text-[#087F72] mt-2">
             {inProgress}
           </div>
-          <p className="text-xs text-slate-500 mt-1">Dispatched to field teams</p>
+          <p className="text-xs text-[#64748B] mt-1">Dispatched to field teams</p>
         </div>
 
-        <div className="card-subtle p-5 bg-white">
+        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-5 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Avg Resolution SLA</span>
-            <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#94A3B8]">Avg Resolution SLA</span>
+            <div className="w-8 h-8 rounded-lg bg-[#EFF6FF] border border-[#BFDBFE] text-[#2563EB] flex items-center justify-center">
               <TrendingUp size={16} />
             </div>
           </div>
-          <div className="text-3xl font-extrabold text-indigo-600 mt-2">
-            {avgDays} <span className="text-lg font-medium text-slate-400">days</span>
+          <div className="text-3xl font-extrabold text-[#2563EB] mt-2">
+            {avgDays} <span className="text-lg font-medium text-[#94A3B8]">days</span>
           </div>
-          <p className="text-xs text-slate-500 mt-1">From submission to completion</p>
+          <p className="text-xs text-[#64748B] mt-1">From submission to completion</p>
         </div>
       </div>
 
       {/* Analytics Breakdown: Department & Severity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Department Breakdown */}
-        <div className="card-subtle p-6 bg-white space-y-4">
-          <div className="border-b border-slate-100 pb-3">
-            <h3 className="text-base font-bold text-navy-950 flex items-center gap-2">
-              <Building2 size={18} className="text-teal-600" />
+        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 shadow-sm space-y-4">
+          <div className="border-b border-[#E2E8F0] pb-3">
+            <h3 className="text-base font-bold text-[#111827] flex items-center gap-2">
+              <Building2 size={18} className="text-[#087F72]" />
               Issues by Municipal Department
             </h3>
-            <p className="text-xs text-slate-500">Distribution of workload across city agencies</p>
+            <p className="text-xs text-[#64748B]">Distribution of workload across city agencies</p>
           </div>
 
           <div className="space-y-4 pt-2">
@@ -205,14 +205,14 @@ export default function TransparencyPage() {
                 return (
                   <div key={idx} className="space-y-1.5">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="font-semibold text-navy-900">{item.department}</span>
-                      <span className="text-slate-500 font-medium">
+                      <span className="font-semibold text-[#111827]">{item.department}</span>
+                      <span className="text-[#64748B] font-medium">
                         {count} reports ({percentage}%)
                       </span>
                     </div>
-                    <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="w-full h-2.5 bg-[#F1F5F9] rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-teal-600 rounded-full transition-all duration-500"
+                        className="h-full bg-[#087F72] rounded-full transition-all duration-500"
                         style={{ width: `${Math.min(100, percentage)}%` }}
                       />
                     </div>
@@ -220,19 +220,19 @@ export default function TransparencyPage() {
                 );
               })
             ) : (
-              <p className="text-xs text-slate-400 py-4">No department metrics available.</p>
+              <p className="text-xs text-[#94A3B8] py-4">No department metrics available.</p>
             )}
           </div>
         </div>
 
         {/* Severity Distribution */}
-        <div className="card-subtle p-6 bg-white space-y-4">
-          <div className="border-b border-slate-100 pb-3">
-            <h3 className="text-base font-bold text-navy-950 flex items-center gap-2">
-              <AlertTriangle size={18} className="text-orange-500" />
+        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 shadow-sm space-y-4">
+          <div className="border-b border-[#E2E8F0] pb-3">
+            <h3 className="text-base font-bold text-[#111827] flex items-center gap-2">
+              <AlertTriangle size={18} className="text-[#EA580C]" />
               AI Risk & Severity Classification
             </h3>
-            <p className="text-xs text-slate-500">Categorization determined by Gemini multimodal vision triage</p>
+            <p className="text-xs text-[#64748B]">Categorization determined by Gemini multimodal vision triage</p>
           </div>
 
           <div className="space-y-4 pt-2">
@@ -241,11 +241,11 @@ export default function TransparencyPage() {
                 const count = item.count || 0;
                 const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
                 const barColor = {
-                  Critical: 'bg-red-500',
-                  High: 'bg-orange-500',
-                  Medium: 'bg-amber-500',
-                  Low: 'bg-slate-400',
-                }[item.severity] || 'bg-teal-500';
+                  Critical: 'bg-[#DC2626]',
+                  High: 'bg-[#EA580C]',
+                  Medium: 'bg-[#D97706]',
+                  Low: 'bg-[#16A34A]',
+                }[item.severity] || 'bg-[#087F72]';
 
                 return (
                   <div key={idx} className="space-y-1.5">
@@ -253,11 +253,11 @@ export default function TransparencyPage() {
                       <div className="flex items-center gap-2">
                         <SeverityBadge severity={item.severity} size="sm" />
                       </div>
-                      <span className="text-slate-500 font-medium">
+                      <span className="text-[#64748B] font-medium">
                         {count} issues ({percentage}%)
                       </span>
                     </div>
-                    <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="w-full h-2.5 bg-[#F1F5F9] rounded-full overflow-hidden">
                       <div
                         className={`h-full ${barColor} rounded-full transition-all duration-500`}
                         style={{ width: `${Math.min(100, percentage)}%` }}
@@ -267,7 +267,7 @@ export default function TransparencyPage() {
                 );
               })
             ) : (
-              <p className="text-xs text-slate-400 py-4">No severity metrics available.</p>
+              <p className="text-xs text-[#94A3B8] py-4">No severity metrics available.</p>
             )}
           </div>
         </div>
@@ -275,27 +275,27 @@ export default function TransparencyPage() {
 
       {/* Public Complaints Ledger Section */}
       <div className="space-y-4">
-        <div className="border-b border-slate-200/80 pb-3">
-          <h2 className="text-xl font-bold text-navy-950">
+        <div className="border-b border-[#E2E8F0] pb-3">
+          <h2 className="text-xl font-bold text-[#111827]">
             Public Complaints Ledger
           </h2>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-[#64748B]">
             Open citizen audit log. All personally identifiable information has been redacted for citizen privacy.
           </p>
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="card-subtle p-4 bg-white space-y-3">
+        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-4 shadow-sm space-y-3">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {/* Search Input */}
             <div className="relative">
-              <Search size={15} className="absolute left-3 top-3 text-slate-400" />
+              <Search size={15} className="absolute left-3 top-3 text-[#94A3B8]" />
               <input
                 type="text"
                 placeholder="Search by code, title, area..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-300 text-xs text-navy-900 placeholder-slate-400"
+                className="w-full pl-9 pr-3 py-2 rounded-lg border border-[#E2E8F0] text-xs text-[#111827] placeholder-[#94A3B8] focus:border-[#087F72]"
               />
             </div>
 
@@ -304,7 +304,7 @@ export default function TransparencyPage() {
               <select
                 value={selectedSeverity}
                 onChange={(e) => setSelectedSeverity(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-navy-900 bg-white"
+                className="w-full px-3 py-2 rounded-lg border border-[#E2E8F0] text-xs text-[#111827] bg-white focus:border-[#087F72]"
               >
                 <option value="ALL">All Severities</option>
                 <option value="Critical">Critical</option>
@@ -319,7 +319,7 @@ export default function TransparencyPage() {
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-navy-900 bg-white"
+                className="w-full px-3 py-2 rounded-lg border border-[#E2E8F0] text-xs text-[#111827] bg-white focus:border-[#087F72]"
               >
                 <option value="ALL">All Statuses</option>
                 <option value="SUBMITTED">Submitted</option>
@@ -339,7 +339,7 @@ export default function TransparencyPage() {
                   setSelectedSeverity('ALL');
                   setSelectedStatus('ALL');
                 }}
-                className="px-3 py-2 text-xs font-semibold text-slate-600 hover:text-navy-900 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors"
+                className="px-3 py-2 text-xs font-semibold text-[#64748B] hover:text-[#111827] hover:bg-[#F8FAFC] rounded-lg border border-[#E2E8F0] transition-colors"
               >
                 Reset Filters
               </button>
@@ -349,14 +349,14 @@ export default function TransparencyPage() {
 
         {/* Complaints Table or Cards */}
         {filteredComplaints.length === 0 ? (
-          <div className="card-subtle p-8 text-center text-slate-500">
+          <div className="bg-white rounded-2xl border border-[#E2E8F0] p-8 text-center text-[#64748B] shadow-sm">
             <p className="text-sm">No complaints match the selected filter criteria.</p>
           </div>
         ) : (
-          <div className="overflow-x-auto card-subtle bg-white">
+          <div className="overflow-x-auto bg-white rounded-2xl border border-[#E2E8F0] shadow-sm">
             <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase font-semibold">
+                <tr className="bg-[#F8FAFC] border-b border-[#E2E8F0] text-[#64748B] uppercase font-semibold">
                   <th className="py-3 px-4">Tracking Code</th>
                   <th className="py-3 px-4">Title & Issue</th>
                   <th className="py-3 px-4">Locality</th>
@@ -366,18 +366,18 @@ export default function TransparencyPage() {
                   <th className="py-3 px-4 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-[#E2E8F0]">
                 {filteredComplaints.map((item) => (
-                  <tr key={item.complaintCode} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="py-3.5 px-4 font-mono font-bold text-teal-700 whitespace-nowrap">
+                  <tr key={item.complaintCode} className="hover:bg-[#F8FAFC] transition-colors">
+                    <td className="py-3.5 px-4 font-mono font-bold text-[#087F72] whitespace-nowrap">
                       {item.complaintCode}
                     </td>
-                    <td className="py-3.5 px-4 font-medium text-navy-900 max-w-xs truncate">
+                    <td className="py-3.5 px-4 font-medium text-[#111827] max-w-xs truncate">
                       {item.title}
                     </td>
-                    <td className="py-3.5 px-4 text-slate-600 whitespace-nowrap">
+                    <td className="py-3.5 px-4 text-[#64748B] whitespace-nowrap">
                       <span className="flex items-center gap-1">
-                        <MapPin size={12} className="text-slate-400" />
+                        <MapPin size={12} className="text-[#94A3B8]" />
                         {item.locality}
                       </span>
                     </td>
@@ -387,7 +387,7 @@ export default function TransparencyPage() {
                     <td className="py-3.5 px-4 whitespace-nowrap">
                       <StatusBadge status={item.status} size="sm" />
                     </td>
-                    <td className="py-3.5 px-4 text-slate-400 whitespace-nowrap">
+                    <td className="py-3.5 px-4 text-[#94A3B8] whitespace-nowrap">
                       {item.createdAt
                         ? new Date(item.createdAt).toLocaleDateString('en-US', {
                             month: 'short',
@@ -398,7 +398,7 @@ export default function TransparencyPage() {
                     <td className="py-3.5 px-4 text-right whitespace-nowrap">
                       <Link
                         to={`/track/${encodeURIComponent(item.complaintCode)}`}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-teal-50 hover:bg-teal-100 text-teal-700 font-semibold transition-colors"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#E6F5F1] hover:bg-[#B2E3D8] text-[#087F72] font-semibold transition-colors"
                       >
                         <span>Inspect</span>
                         <ArrowRight size={11} />
