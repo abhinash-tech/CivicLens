@@ -16,7 +16,8 @@
     "test": "node tests/run-all-tests.js"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "playwright": "^1.65.1"
   },
   "keywords": [
     "civic-tech",
