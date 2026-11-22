@@ -1,7 +1,29 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'civiclens-fallback-dev-secret-do-not-use-in-production';
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '24h';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const backendEnvPath = path.resolve(__dirname, '../../../.env');
+const rootEnvPath = path.resolve(__dirname, '../../../../.env');
+
+if (fs.existsSync(backendEnvPath)) {
+  dotenv.config({ path: backendEnvPath });
+} else if (fs.existsSync(rootEnvPath)) {
+  dotenv.config({ path: rootEnvPath });
+} else {
+  dotenv.config();
+}
+
+export function getJwtSecret() {
+  return process.env.JWT_SECRET || 'civiclens-fallback-dev-secret-do-not-use-in-production';
+}
+
+export function getJwtExpiresIn() {
+  return process.env.JWT_EXPIRES_IN || '24h';
+}
 
 /**
  * Signs a JWT token with the provided payload.
@@ -10,8 +32,8 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '24h';
  * @returns {string} Signed JWT token
  */
 export function generateToken(payload, options = {}) {
-  return jwt.sign(payload, JWT_SECRET, {
-    expiresIn: JWT_EXPIRES_IN,
+  return jwt.sign(payload, getJwtSecret(), {
+    expiresIn: options.expiresIn || getJwtExpiresIn(),
     ...options
   });
 }
@@ -23,10 +45,12 @@ export function generateToken(payload, options = {}) {
  * @throws {Error} If token is invalid or expired
  */
 export function verifyToken(token) {
-  return jwt.verify(token, JWT_SECRET);
+  return jwt.verify(token, getJwtSecret());
 }
 
 export default {
   generateToken,
-  verifyToken
+  verifyToken,
+  getJwtSecret,
+  getJwtExpiresIn
 };
