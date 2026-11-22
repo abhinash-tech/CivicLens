@@ -4,6 +4,24 @@
  */
 
 import { GoogleGenAI } from '@google/genai';
+import dotenv from 'dotenv';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const backendEnvPath = path.resolve(__dirname, '../../../.env');
+const rootEnvPath = path.resolve(__dirname, '../../../../.env');
+
+if (fs.existsSync(backendEnvPath)) {
+  dotenv.config({ path: backendEnvPath });
+} else if (fs.existsSync(rootEnvPath)) {
+  dotenv.config({ path: rootEnvPath });
+} else {
+  dotenv.config();
+}
+
 import {
   CIVIC_ISSUE_TYPES,
   SEVERITY_LEVELS,
@@ -188,13 +206,29 @@ export async function analyzeIssue({
       temperature: 0.2
     };
 
-    const callPromise = ai.models.generateContent({
-      model,
-      contents,
-      config: requestConfig
-    });
+    let response;
+    try {
+      const callPromise = ai.models.generateContent({
+        model,
+        contents,
+        config: requestConfig
+      });
+      response = await withTimeout(callPromise, timeoutMs);
+    } catch (primaryErr) {
+      // If primary model (e.g. gemini-3.8-flash) encounters high-demand 503 or timeout, failover to gemini-2.5-flash
+      if (model !== 'gemini-2.5-flash') {
+        console.warn(`[CivicLens AI] Primary model ${model} unavailable or timed out (${primaryErr.message}). Failing over to gemini-2.5-flash...`);
+        const failoverPromise = ai.models.generateContent({
+          model: 'gemini-2.5-flash',
+          contents,
+          config: requestConfig
+        });
+        response = await withTimeout(failoverPromise, timeoutMs);
+      } else {
+        throw primaryErr;
+      }
+    }
 
-    const response = await withTimeout(callPromise, timeoutMs);
     const parsedResult = parseGeminiJson(response.text);
 
     return parsedResult;
