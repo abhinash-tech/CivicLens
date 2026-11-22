@@ -380,7 +380,7 @@ await runAsyncTest('uploadComplaintImage falls back cleanly to local filesystem 
   assert.ok(result.imageUrl, 'Must return an imageUrl');
   assert.ok(result.publicId, 'Must return a publicId');
   assert.ok(
-    result.imageUrl.startsWith('/uploads/') || result.imageUrl.startsWith('https://'),
+    result.imageUrl.startsWith('/uploads/') || result.imageUrl.startsWith('https://') || result.imageUrl.startsWith('data:'),
     `Unexpected imageUrl format: ${result.imageUrl}`
   );
 

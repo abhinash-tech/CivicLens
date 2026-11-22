@@ -15,7 +15,9 @@ const frontendDistPath = path.resolve(__dirname, '../../frontend/dist');
 const app = express();
 
 // Security HTTP headers
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
+}));
 
 // CORS configuration
 const allowedOrigins = process.env.CLIENT_ORIGIN
@@ -47,8 +49,17 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Serve local uploads if available
-app.use('/uploads', express.static(uploadsDir));
+// Serve local uploads with permissive cross-origin headers
+app.use(
+  '/uploads',
+  (req, res, next) => {
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    next();
+  },
+  express.static(uploadsDir)
+);
 
 // Mount all API routes under /api as well as root alias for client base URL flexibility
 app.use('/api', routes);

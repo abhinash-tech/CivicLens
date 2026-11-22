@@ -105,6 +105,18 @@ function saveLocalFallback({ buffer, mimeType, filename }) {
 
     fs.writeFileSync(destinationPath, buffer);
 
+    // If buffer is available and under 5MB, generate a self-contained base64 data URI
+    // that persists safely in the cloud database across ephemeral container restarts
+    // and displays seamlessly on external frontend domains without CORS/CORP issues.
+    if (buffer && buffer.length <= 5 * 1024 * 1024) {
+      const resolvedMime = mimeType || 'image/jpeg';
+      const dataUri = `data:${resolvedMime};base64,${buffer.toString('base64')}`;
+      return {
+        imageUrl: dataUri,
+        publicId: `local_${uniqueBase}`
+      };
+    }
+
     return {
       imageUrl: `/uploads/${savedFilename}`,
       publicId: `local_${uniqueBase}`

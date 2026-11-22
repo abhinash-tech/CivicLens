@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS complaints (
   citizen_name VARCHAR(150) NULL,
   citizen_phone VARCHAR(30) NULL,
   citizen_email VARCHAR(150) NULL,
-  image_url VARCHAR(500) NULL,
+  image_url MEDIUMTEXT NULL,
   image_public_id VARCHAR(255) NULL,
   issue_type VARCHAR(100) NOT NULL,
   severity ENUM('Low', 'Medium', 'High', 'Critical') NOT NULL DEFAULT 'Medium',

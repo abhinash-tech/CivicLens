@@ -18,7 +18,7 @@ import {
   User,
   Share2
 } from 'lucide-react';
-import { api } from '../services/api';
+import { api, getFullImageUrl } from '../services/api';
 import StatusBadge from '../components/StatusBadge';
 import SeverityBadge from '../components/SeverityBadge';
 import AIAssessmentCard from '../components/AIAssessmentCard';
@@ -253,14 +253,23 @@ export default function TrackPage() {
                   <Camera size={14} />
                   Site Photo Evidence
                 </h4>
-                <div className="relative inline-block rounded-xl overflow-hidden border border-[#E2E8F0] max-h-72 shadow-xs group">
+                <div className="relative inline-block rounded-xl overflow-hidden border border-[#E2E8F0] max-h-72 shadow-xs group bg-[#111827]">
                   <img
-                    src={complaint.imageUrl}
+                    src={getFullImageUrl(complaint.imageUrl)}
                     alt={complaint.title}
                     className="max-h-72 w-auto object-cover hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const fallback = e.currentTarget.parentElement?.querySelector('.track-img-fallback');
+                      if (fallback) fallback.style.display = 'flex';
+                    }}
                   />
+                  <div className="track-img-fallback hidden w-64 h-48 flex-col items-center justify-center bg-[#1E293B] text-[#94A3B8] p-4 text-center">
+                    <Camera size={28} className="mb-2 text-[#64748B]" />
+                    <span className="text-xs">Photo attachment unavailable</span>
+                  </div>
                   <a
-                    href={complaint.imageUrl}
+                    href={getFullImageUrl(complaint.imageUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="absolute bottom-2 right-2 px-2.5 py-1 bg-black/70 hover:bg-black/90 text-white rounded text-xs backdrop-blur-xs flex items-center gap-1 transition-colors"

@@ -7,6 +7,40 @@ const rawBase = (import.meta.env.VITE_API_BASE_URL || '/api').trim().replace(/\/
 const API_BASE_URL = rawBase === '/api' || rawBase.endsWith('/api') ? rawBase : `${rawBase}/api`;
 
 /**
+ * Safely resolves an image URL to a full, loadable URL.
+ * Handles base64 data URIs, external CDN URLs (Cloudinary, Unsplash),
+ * and relative backend upload paths (/uploads/...) across different deploy origins.
+ *
+ * @param {string|null} imageUrl
+ * @returns {string|null}
+ */
+export function getFullImageUrl(imageUrl) {
+  if (!imageUrl || typeof imageUrl !== 'string') {
+    return null;
+  }
+  const trimmed = imageUrl.trim();
+  if (!trimmed) return null;
+
+  // If already absolute, blob, or base64 data URI, return directly
+  if (
+    trimmed.startsWith('data:') ||
+    trimmed.startsWith('http://') ||
+    trimmed.startsWith('https://') ||
+    trimmed.startsWith('blob:')
+  ) {
+    return trimmed;
+  }
+
+  // Resolve relative backend upload paths against the backend origin
+  const backendOrigin = rawBase.replace(/\/api\/?$/, '');
+  if (trimmed.startsWith('/')) {
+    return backendOrigin ? `${backendOrigin}${trimmed}` : trimmed;
+  }
+
+  return backendOrigin ? `${backendOrigin}/${trimmed}` : `/${trimmed}`;
+}
+
+/**
  * Helper to handle fetch responses and error extraction
  */
 async function request(endpoint, options = {}) {
@@ -115,6 +149,8 @@ export const api = {
       body: { status, adminNotes, reason },
     });
   },
+
+  getFullImageUrl,
 };
 
 export default api;

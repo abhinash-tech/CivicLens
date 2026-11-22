@@ -22,9 +22,10 @@ import {
   ShieldCheck,
   Building2,
   FileEdit,
-  Eye
+  Eye,
+  Camera
 } from 'lucide-react';
-import { api } from '../services/api';
+import { api, getFullImageUrl } from '../services/api';
 import StatusBadge from '../components/StatusBadge';
 import SeverityBadge from '../components/SeverityBadge';
 import AIAssessmentCard from '../components/AIAssessmentCard';
@@ -580,12 +581,21 @@ export default function AdminDashboardPage() {
                 {selectedComplaint.imageUrl ? (
                   <div className="rounded-xl overflow-hidden border border-[#E2E8F0] bg-[#111827] max-h-56 relative group">
                     <img
-                      src={selectedComplaint.imageUrl}
+                      src={getFullImageUrl(selectedComplaint.imageUrl)}
                       alt={selectedComplaint.title}
                       className="w-full h-56 object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        const fallback = e.currentTarget.parentElement?.querySelector('.img-fallback');
+                        if (fallback) fallback.style.display = 'flex';
+                      }}
                     />
+                    <div className="img-fallback hidden w-full h-56 flex-col items-center justify-center bg-[#1E293B] text-[#94A3B8] p-4 text-center">
+                      <Camera size={32} className="mb-2 text-[#64748B]" />
+                      <span className="text-xs font-medium">Image preview unavailable</span>
+                    </div>
                     <a
-                      href={selectedComplaint.imageUrl}
+                      href={getFullImageUrl(selectedComplaint.imageUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="absolute bottom-2 right-2 px-2 py-1 bg-black/70 hover:bg-black/90 text-white rounded text-[11px] backdrop-blur-xs flex items-center gap-1"

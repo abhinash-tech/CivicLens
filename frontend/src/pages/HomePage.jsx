@@ -14,7 +14,7 @@ import {
   TrendingUp,
   Activity
 } from 'lucide-react';
-import { api } from '../services/api';
+import { api, getFullImageUrl } from '../services/api';
 import StatusBadge from '../components/StatusBadge';
 import SeverityBadge from '../components/SeverityBadge';
 
@@ -283,17 +283,25 @@ export default function HomePage() {
                   <div className="h-40 bg-[#F8FAFC] overflow-hidden relative">
                     {item.imageUrl ? (
                       <img
-                        src={item.imageUrl}
+                        src={getFullImageUrl(item.imageUrl)}
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          const fallback = e.currentTarget.parentElement?.querySelector('.home-img-fallback');
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
                       />
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center text-[#94A3B8] bg-[#F8FAFC]">
-                        <Camera size={28} className="mb-1 opacity-50" />
-                        <span className="text-[11px]">No photo attached</span>
-                      </div>
-                    )}
+                    ) : null}
+                    <div
+                      className={`home-img-fallback w-full h-full flex flex-col items-center justify-center text-[#94A3B8] bg-[#F8FAFC] ${
+                        item.imageUrl ? 'hidden' : 'flex'
+                      }`}
+                    >
+                      <Camera size={28} className="mb-1 opacity-50" />
+                      <span className="text-[11px]">No photo attached</span>
+                    </div>
                     <div className="absolute top-2.5 right-2.5">
                       <StatusBadge status={item.status} size="sm" />
                     </div>
