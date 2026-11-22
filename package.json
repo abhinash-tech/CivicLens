@@ -9,7 +9,8 @@
     "backend:dev": "node --watch backend/src/server.js",
     "frontend:dev": "npm --prefix frontend run dev",
     "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
-    "build": "npm --prefix frontend run build",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build && npm --prefix backend install",
+    "build:frontend": "npm --prefix frontend run build",
     "migrate": "node backend/database/run-migrations.js",
     "seed": "node backend/database/seed.js",
     "test": "node tests/run-all-tests.js"

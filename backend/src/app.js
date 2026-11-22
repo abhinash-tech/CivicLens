@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import routes from './routes/index.js';
 import { notFoundHandler, errorHandler } from './middleware/errorHandler.js';
@@ -9,6 +10,7 @@ import { notFoundHandler, errorHandler } from './middleware/errorHandler.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const uploadsDir = path.resolve(__dirname, '../uploads');
+const frontendDistPath = path.resolve(__dirname, '../../frontend/dist');
 
 const app = express();
 
@@ -48,7 +50,18 @@ app.use('/uploads', express.static(uploadsDir));
 // Mount all API routes under /api
 app.use('/api', routes);
 
-// Unmatched route 404 handler
+// Serve frontend static build if dist exists (enables unified live URL deployment)
+if (fs.existsSync(frontendDistPath)) {
+  app.use(express.static(frontendDistPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+}
+
+// Unmatched route 404 handler (for unmatched /api routes)
 app.use(notFoundHandler);
 
 // Centralized error handling
