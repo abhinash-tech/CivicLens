@@ -2,6 +2,7 @@
   "name": "civiclens-monorepo",
   "version": "1.0.0",
   "description": "CivicLens - AI-Powered Civic Infrastructure Complaint Management Platform",
+  "type": "module",
   "scripts": {
     "start": "node backend/src/server.js",
     "server": "node backend/src/server.js",
