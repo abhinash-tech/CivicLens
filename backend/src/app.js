@@ -50,8 +50,9 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Serve local uploads if available
 app.use('/uploads', express.static(uploadsDir));
 
-// Mount all API routes under /api
+// Mount all API routes under /api as well as root alias for client base URL flexibility
 app.use('/api', routes);
+app.use('/', routes);
 
 // Serve frontend static build if dist exists (enables unified live URL deployment)
 if (fs.existsSync(frontendDistPath)) {

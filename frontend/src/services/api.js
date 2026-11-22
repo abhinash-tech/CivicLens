@@ -3,7 +3,8 @@
  * Interacts with backend API endpoints defined in docs/api-contract.md
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+const rawBase = (import.meta.env.VITE_API_BASE_URL || '/api').trim().replace(/\/$/, '');
+const API_BASE_URL = rawBase === '/api' || rawBase.endsWith('/api') ? rawBase : `${rawBase}/api`;
 
 /**
  * Helper to handle fetch responses and error extraction
