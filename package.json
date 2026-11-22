@@ -1,0 +1,29 @@
+{
+  "name": "civiclens-monorepo",
+  "version": "1.0.0",
+  "description": "CivicLens - AI-Powered Civic Infrastructure Complaint Management Platform",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "server": "node backend/src/server.js",
+    "backend:dev": "node --watch backend/src/server.js",
+    "frontend:dev": "npm --prefix frontend run dev",
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "build": "npm --prefix frontend run build",
+    "migrate": "node backend/database/run-migrations.js",
+    "seed": "node backend/database/seed.js",
+    "test": "node tests/run-all-tests.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "keywords": [
+    "civic-tech",
+    "gemini-ai",
+    "infrastructure",
+    "mysql",
+    "react",
+    "nodejs"
+  ],
+  "author": "CivicLens Team",
+  "license": "MIT"
+}
